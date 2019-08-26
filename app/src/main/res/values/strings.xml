@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">RandomGrid</string>
+
+    <!-- Menu -->
+    <string name="menu_input">輸入</string>
+
+    <string name="column">Column</string>
+    <string name="row">Row</string>
+    <string name="random">Random</string>
+
+    <string name="confirm">確定</string>
+
+    <string name="column_must_be_bigger_than_zero">Column必須大於0</string>
+    <string name="row_must_be_bigger_than_zero">Row必須大於0</string>
+
+</resources>

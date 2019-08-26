@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:state_selected="true" >
+        <shape>
+            <corners android:radius="10dp"/>
+            <solid android:color="@color/md_cyan_A700"/>
+        </shape>
+    </item>
+
+    <item android:state_pressed="true" >
+        <shape>
+            <corners android:radius="10dp"/>
+            <solid android:color="@color/md_cyan_A400"/>
+        </shape>
+    </item>
+
+    <item
+        android:left="@dimen/padding_size_l"
+        android:right="@dimen/padding_size_l"
+        android:top="@dimen/padding_size_l"
+        android:bottom="@dimen/padding_size_l" >
+        <shape>
+            <corners android:radius="10dp"/>
+            <stroke android:color="@color/md_grey_400"
+                    android:width="1dp"/>
+        </shape>
+    </item>
+
+</selector>
