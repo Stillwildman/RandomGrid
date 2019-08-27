@@ -1,4 +1,4 @@
-package com.vincent.utilities;
+package com.vincent.randomgrid.utilities;
 
 import android.content.Context;
 import android.content.DialogInterface;

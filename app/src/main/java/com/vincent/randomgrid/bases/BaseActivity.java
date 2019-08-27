@@ -1,9 +1,11 @@
 package com.vincent.randomgrid.bases;
 
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
 import android.os.Message;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.LinearLayout;
@@ -17,11 +19,15 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 
 public abstract class BaseActivity extends AppCompatActivity {
 
+    protected final String TAG = getClass().getSimpleName();
+
     protected abstract int getLayoutId();
 
     protected abstract void init();
 
     protected abstract void onUiHandleMessage(Message msg);
+
+    protected abstract void onScreenSizeChanged();
 
     protected abstract void onMenuItemClick(int itemId);
 
@@ -35,6 +41,8 @@ public abstract class BaseActivity extends AppCompatActivity {
         initToolbar();
 
         init();
+
+        Log.d(TAG, "onCreate!!!");
     }
 
     private void initToolbar() {
@@ -63,11 +71,6 @@ public abstract class BaseActivity extends AppCompatActivity {
         return true;
     }
 
-    /**
-     * Handle action bar item clicks here.<p>
-     * The action bar will automatically handle clicks on the Home/Up button,<br>
-     * so long as you specify a parent activity in AndroidManifest.xml.
-     */
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         onMenuItemClick(item.getItemId());
@@ -88,30 +91,43 @@ public abstract class BaseActivity extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
+        Log.d(TAG, "onStart!!!");
     }
 
     @Override
     protected void onResume() {
         super.onResume();
+        Log.d(TAG, "onResume!!!");
     }
 
     @Override
     protected void onPause() {
         super.onPause();
+        Log.d(TAG, "onPause!!!");
     }
 
     @Override
     protected void onStop() {
         super.onStop();
+        Log.d(TAG, "onStop!!!");
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
+        Log.d(TAG, "onDestroy!!!");
     }
 
     @Override
     public void onBackPressed() {
         super.onBackPressed();
+    }
+
+    @Override
+    public void onConfigurationChanged(Configuration newConfig) {
+        super.onConfigurationChanged(newConfig);
+        Log.i(TAG, "onConfigurationChanged!!! Orientation: " + newConfig.orientation);
+
+        onScreenSizeChanged();
     }
 }

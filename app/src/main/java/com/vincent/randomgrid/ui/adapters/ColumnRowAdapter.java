@@ -12,7 +12,7 @@ import com.vincent.randomgrid.bases.BaseBindingRecycler;
 import com.vincent.randomgrid.callbacks.ColumnRowCallback;
 import com.vincent.randomgrid.databinding.InflateColumnRowBinding;
 import com.vincent.randomgrid.model.ItemColumnRow;
-import com.vincent.utilities.Utility;
+import com.vincent.randomgrid.utilities.Utility;
 
 import androidx.annotation.NonNull;
 import androidx.databinding.DataBindingUtil;

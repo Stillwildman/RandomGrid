@@ -4,7 +4,7 @@ import android.content.Context;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 
-import com.vincent.utilities.DialogHelper;
+import com.vincent.randomgrid.utilities.DialogHelper;
 
 import androidx.appcompat.app.AppCompatDelegate;
 import androidx.multidex.MultiDex;

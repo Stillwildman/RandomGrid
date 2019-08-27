@@ -9,8 +9,8 @@ import com.vincent.randomgrid.R;
 import com.vincent.randomgrid.bases.BaseActivity;
 import com.vincent.randomgrid.databinding.InflateInputDialogBinding;
 import com.vincent.randomgrid.ui.adapters.ColumnRowAdapter;
-import com.vincent.utilities.DialogHelper;
-import com.vincent.utilities.Utility;
+import com.vincent.randomgrid.utilities.DialogHelper;
+import com.vincent.randomgrid.utilities.Utility;
 
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.RecyclerView;
@@ -63,6 +63,10 @@ public class UiMainActivity extends BaseActivity {
         return (ColumnRowAdapter) recycler.getAdapter();
     }
 
+    private boolean isAdapterNotNullAndNotEmpty() {
+        return getColumnRowAdapter() != null && !getColumnRowAdapter().isEmpty();
+    }
+
     private void showInputDialogIfNeeded() {
         if (getColumnRowAdapter() != null && getColumnRowAdapter().isEmpty()) {
             getUiHandler().postDelayed(this::showInputDialog, 500);
@@ -72,7 +76,7 @@ public class UiMainActivity extends BaseActivity {
     private void showInputDialog() {
         final InflateInputDialogBinding bindingView = DialogHelper.getInputDialogBindingView(this);
 
-        if (getColumnRowAdapter() != null && !getColumnRowAdapter().isEmpty()) {
+        if (isAdapterNotNullAndNotEmpty()) {
             bindingView.editColumn.setText(String.valueOf(getColumnRowAdapter().getItemCount()));
             bindingView.editRow.setText(String.valueOf(getColumnRowAdapter().getRowCount()));
         }
@@ -81,7 +85,7 @@ public class UiMainActivity extends BaseActivity {
             bindingView.editColumn.requestFocus();
             bindingView.editColumn.setSelection(bindingView.editColumn.length());
             AppController.getInstance().showKeyboardByGivenView(true, bindingView.editColumn);
-        }, 500);
+        }, 600);
 
         bindingView.buttonDone.setOnClickListener(view -> setColumnAndRow(bindingView.editColumn, bindingView.editRow));
     }
@@ -123,8 +127,16 @@ public class UiMainActivity extends BaseActivity {
         }
     }
 
+    @Override
+    protected void onScreenSizeChanged() {
+        if (isAdapterNotNullAndNotEmpty()) {
+            getColumnRowAdapter().setColumnRowCount(getColumnRowAdapter().getItemCount(), getColumnRowAdapter().getRowCount());
+        }
+        DialogHelper.dismissDialog();
+    }
+
     private void restartAutoRandomization() {
-        if (getColumnRowAdapter() != null && !getColumnRowAdapter().isEmpty()) {
+        if (isAdapterNotNullAndNotEmpty()) {
             startAutoRandomization();
         }
     }
